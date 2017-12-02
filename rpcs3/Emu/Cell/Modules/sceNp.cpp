@@ -12,7 +12,7 @@
 
 logs::channel sceNp("sceNp");
 
-s32 g_psn_connection_status = SCE_NP_MANAGER_STATUS_OFFLINE;
+s32 g_psn_connection_status = SCE_NP_MANAGER_STATUS_ONLINE;
 
 s32 sceNpInit(u32 poolsize, vm::ptr<void> poolptr)
 {
@@ -1083,6 +1083,9 @@ s32 sceNpManagerGetAccountRegion(vm::ptr<SceNpCountryCode> countryCode, vm::ptr<
 	{
 		return SCE_NP_ERROR_INVALID_STATE;
 	}
+	
+	myLanguages->language2 = CELL_SYSUTIL_LANG_ENGLISH_US;
+	sceNp.todo("sceNpManagerGetMyLanguages(myLanguages=*0x%x) returned english", myLanguages); 
 
 	return CELL_OK;
 }
